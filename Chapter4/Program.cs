@@ -10,30 +10,14 @@ namespace Chapter4
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(GetProduct());
+            //4-2-1
+            //var datas = new int[] { 1, 2, 3, 4, 5, 6 };
+            
         }   
 
-        private static string GetProduct()
-        {
-            Sale sale = new Sale
-            {
-                ShopName = "pet store",
-                Amount = 100000,
-                Product = "food"
-            };
-            //sale = null;
-            return sale?.Product;
-        }
 
     }
 
-    class Sale
-    {
-        //店舗名
-        public string ShopName { get; set; }
-        //売上高
-        public int Amount { get; set; }
-        public string Product { get; set; }
-    }
+   
     
 }
