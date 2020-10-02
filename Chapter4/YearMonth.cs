@@ -32,18 +32,33 @@ namespace Chapter4
         //4-1-3 AddOneMonth()メソッドを追加
         public YearMonth AddOneMonth()
         {
-            YearMonth yearMonth = new YearMonth(Year, Month);
-            if (yearMonth.Month == 12)
+            if (this.Month == 12)
             {
-                yearMonth.Year++;
-                yearMonth.Month = 1;
+                this.Year++;
+                this.Month = 1;
             }
             else
             {
-                yearMonth.Month++;
+                this.Month++;
             }
-            return new YearMonth(Year, Month);
+            return new YearMonth(this.Year, this.Month);
         }
+
+        #region 4-1-3 別回答
+        //public YearMonth AddOneMonth2()
+        //{
+        //    if (this.Month == 12)
+        //    {
+        //        return new YearMonth(this.Year + 1, 1);
+        //    }
+        //    else
+        //    {
+        //        return new YearMonth(this.Year, this.Month + 1);
+        //    }
+        //}
+        #endregion
+
+
 
         //4-1-4 ToString()メソッドのオーバーライド
         public override string ToString()
