@@ -11,53 +11,29 @@ namespace Chapter6
     {
         static void Main(string[] args)
         {
-            //整数の例
-            var numbers = new List<int> { 19, 17, 15, 24, 12, 17, 14, 20, 12, 28, 19, 30, 24 };
+            var numbers = new int[] { 5, 10, 17, 9, 3, 21, 10, 40, 21, 3, 35 };
 
-            var strings = numbers.Distinct().ToArray();
-            foreach (var str in strings)
-            {
-                Console.Write(str + " ");
-            }
+            #region 問題6-1
+            //問題6-1-1
+            Console.WriteLine("問題6-1-1");
+            Console.WriteLine(numbers.Max());
+            //問題6-1-2
+            Console.WriteLine("問題6-1-2");
+            int pos = numbers.Length - 2;
+            numbers.Skip(pos).ToList().ForEach(f => Console.Write(f + " "));
+            //問題6-1-3
             Console.WriteLine();
-            numbers.Select(n => n.ToString("0000")).ToList().ForEach(s => Console.Write(s + " "));  //ToArray()はForEach()使えない
+            Console.WriteLine("問題6-1-3");
+            numbers.Select(s => s.ToString()).ToList().ForEach(f => Console.Write(f + " "));
+            //問題6-1-4
             Console.WriteLine();
-            var sortedNumbers = numbers.OrderBy(n => n).Distinct();
-            foreach (var nums in sortedNumbers)
-            {
-                Console.Write(nums + " ");
-            }
-
-
-            //文字列の例
-            Console.WriteLine("\n\n--------------------------");
-            var words = new List<string> { "Microsoft", "Apple", "Google", "Oracle", "Facebook", };
-
-            var lower = words.Select(s => s.ToLower()).ToArray();
-
-            //オブジェクトの例
-            Console.WriteLine("\n\n--------------------------");
-            var books = Books.GetBooks();
-            //タイトルリスト
-            var titles = books.Select(s => s.Title);
-            foreach (var title in titles)
-            {
-                Console.Write(title + " ");
-            }
-
-            //ページ数の多い順に並び替え（または金額の高い順）
+            Console.WriteLine("問題6-1-4");
+            numbers.OrderBy(o => o).Take(3).ToList().ForEach(f => Console.Write(f + " "));
+            //問題6-1-5
             Console.WriteLine();
-            var OrderPages = books.OrderByDescending(s => s.Pages);
-            foreach (var OrderPage in OrderPages)
-            {
-                Console.Write(OrderPage.Pages + " ");
-            }
-            Console.WriteLine();
-            var OrderPrice = books.OrderByDescending(s => s.Price);
-            foreach (var Orderprice in OrderPrice)
-            {
-                Console.Write(Orderprice.Price + " ");
-            }
+            Console.WriteLine("問題6-1-5");
+            Console.WriteLine(numbers.Distinct().Count(c => c > 10));
+            #endregion
         }
     }
 }
