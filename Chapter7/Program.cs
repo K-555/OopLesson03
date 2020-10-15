@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,95 +13,63 @@ namespace Chapter7
     {
         static void Main(string[] args)
         {
-            #region Dictionary & ToDictionary
-            //var employeeDict = new Dictionary<int,Employee>()
-            //{
-            //    {100,new Employee(100,"清水遼久") },
-            //    {112,new Employee(112,"芹沢洋和") },
-            //    {125,new Employee(125,"岩瀬奈央子")},
-            //};
+            Console.WriteLine("************************");
+            Console.WriteLine("*　辞書登録プログラム　*");
+            Console.WriteLine("************************");
 
-            ////Console.WriteLine($"{employeeDict.Sum(emp => emp.Value.Id)}");
-            ////employeeDict.Where(emp => emp.Value.Id % 2 == 0).ToList().ForEach(c=> Console.WriteLine(c.Value.Name));
-            //var num = employeeDict.Where(emp => emp.Value.Id % 2 == 0).ToList();
-            //foreach (var item in num)
-            //{
-            //    Console.WriteLine($"{item.Value.Name}");
-            //}
+            Registration();
 
-            //リスト
-            //var employee = new List<Employee>()
-            //{
-            //    new Employee(100,"清水遼久"),
-            //    new Employee(112,"芹沢洋和"),
-            //    new Employee(125,"岩瀬奈央子"),
-            //    new Employee(126,"庄野遥花"),
-            //    new Employee(127,"安倍庄司"),
-            //    new Employee(128,"小池由美子"),
-            //    new Employee(129,"麻生巧"),
-            //    new Employee(130,"明日香未来"),
-            //};
-
-            //var employeeDict = employee.ToDictionary(emp => emp.Id);
-
-            //foreach (KeyValuePair<int, Employee> item in employeeDict.Where(emp => emp.Value.Id % 2 == 0))
-            //{
-            //    Console.WriteLine($"{item.Value.Id} = {item.Value.Name}");
-            //}
-
-            #endregion
-
-            #region Dictionary<MonthDay,string>
-            //var lines = File.ReadAllLines("sample.txt");
-            //var we = new WordsExtractor(lines);
-            //foreach (var word in we.Extract())
-            //{
-            //    Console.WriteLine(word);
-            //}
-
-            //var dict = new Dictionary<MonthDay, string>
-            //{
-            //    {new MonthDay(3,5), "珊瑚の日"},
-            //    {new MonthDay(8,4),"箸の日" },
-            //    {new MonthDay(10,3),"登山の日" },
-            //};
-
-            //var md = new MonthDay(8, 4);
-            //var s = dict[md];
-            //Console.WriteLine(s);
-            #endregion
-
-            DuplicateKeySample();
         }
 
-        static public void DuplicateKeySample()
+        static public void Registration()
         {
             // ディクショナリの初期化
-            var dict = new Dictionary<string, List<string>>() {
-               { "PC", new List<string> { "パーソナル コンピュータ", "プログラム カウンタ", } },
-               { "CD", new List<string> { "コンパクト ディスク", "キャッシュ ディスペンサー", } },
-            };
-
-            // ディクショナリに追加
-            var key = "EC";
-            var value = "電子商取引";
-            if (dict.ContainsKey(key))
+            var dict = new Dictionary<string, List<string>>();
+            do
             {
-                dict[key].Add(value);
-            }
-            else
-            {
-                dict[key] = new List<string> { value };
-            }
-
-            // ディクショナリの内容を列挙
-            foreach (var item in dict)
-            {
-                foreach (var term in item.Value)
+                //1．登録　2．内容を表示
+                Console.WriteLine("1．登録　2．内容を表示　3．終了" );
+                Console.Write(">");
+                int ot = int.Parse(Console.ReadLine());
+                Console.WriteLine();
+                switch (ot)
                 {
-                    Console.WriteLine("{0} : {1}", item.Key, term);
+                    case 1:
+                        Console.Write("KEYを入力：");
+                        var key = Console.ReadLine();
+                        Console.Write("VALUEを入力：");
+                        var value = Console.ReadLine();
+
+                        if (dict.ContainsKey(key))
+                        {
+                            dict[key].Add(value);
+                        }
+                        else
+                        {
+                            dict[key] = new List<string> { value };
+                        }
+                        Console.WriteLine("登録されました！");
+                        Console.WriteLine();
+                        break;
+                    case 2:
+                        //ディクショナリの内容を列挙 2．内容を表示
+                        foreach (var item in dict)
+                        {
+                            foreach (var term in item.Value)
+                            {
+                                Console.WriteLine("{0} : {1}", item.Key, term);
+                            }
+                        }
+                        break;
+                    case 3:
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        Console.WriteLine("数値が違います。");
+                        break;
                 }
-            }
-        }
+
+            } while (true);
+        }        
     }
 }
