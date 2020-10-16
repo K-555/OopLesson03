@@ -13,63 +13,74 @@ namespace Chapter7
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("************************");
-            Console.WriteLine("*　辞書登録プログラム　*");
-            Console.WriteLine("************************");
+            var text = "Cozy lummox gives smart squid who asks for job pen";
 
-            Registration();
-
+            Exercise1_1(text);  //問題7-1-1
         }
 
-        static public void Registration()
-        {
-            // ディクショナリの初期化
-            var dict = new Dictionary<string, List<string>>();
-            do
-            {
-                //1．登録　2．内容を表示
-                Console.WriteLine("1．登録　2．内容を表示　3．終了" );
-                Console.Write(">");
-                int ot = int.Parse(Console.ReadLine());
-                Console.WriteLine();
-                switch (ot)
-                {
-                    case 1:
-                        Console.Write("KEYを入力：");
-                        var key = Console.ReadLine();
-                        Console.Write("VALUEを入力：");
-                        var value = Console.ReadLine();
+        #region 問題7-1-1
+        //static void Exercise1_1(string text)
+        //{
+        //    var dict = new Dictionary<char, int>();
+        //    //foreachで一文字ずつ取り出す
+        //    //半角アルファベットが調べる
+        //    foreach (var ch in text)
+        //    {
+        //        //大文字に変換
+        //        char chars = char.ToUpper(ch);
+        //        if ('A' <= chars && chars <= 'Z')
+        //        {
+        //            //Keyに存在するか
+        //            if (dict.ContainsKey(chars))
+        //            {
+        //                //登録済み  
+        //                dict[chars]++;
+        //            }
+        //            else
+        //            {
+        //                //未登録
+        //                dict[chars] = 1;
+        //            }
+        //        }
 
-                        if (dict.ContainsKey(key))
-                        {
-                            dict[key].Add(value);
-                        }
-                        else
-                        {
-                            dict[key] = new List<string> { value };
-                        }
-                        Console.WriteLine("登録されました！");
-                        Console.WriteLine();
-                        break;
-                    case 2:
-                        //ディクショナリの内容を列挙 2．内容を表示
-                        foreach (var item in dict)
-                        {
-                            foreach (var term in item.Value)
-                            {
-                                Console.WriteLine("{0} : {1}", item.Key, term);
-                            }
-                        }
-                        break;
-                    case 3:
-                        Environment.Exit(0);
-                        break;
-                    default:
-                        Console.WriteLine("数値が違います。");
-                        break;
+        //    }
+        //    foreach (var item in dict.OrderBy(o => o.Key))
+        //    {
+        //        Console.WriteLine($"{item.Key}：{item.Value}");
+        //    }
+        //}
+        #endregion
+        #region 問題7-1-2
+        static void Exercise1_1(string text)
+        {
+            var dict = new SortedDictionary<char, int>();
+            //foreachで一文字ずつ取り出す
+            //半角アルファベットが調べる
+            foreach (var ch in text)
+            {
+                //大文字に変換
+                char chars = char.ToUpper(ch);
+                if ('A' <= chars && chars <= 'Z')
+                {
+                    //Keyに存在するか
+                    if (dict.ContainsKey(chars))
+                    {
+                        //登録済み  
+                        dict[chars]++;
+                    }
+                    else
+                    {
+                        //未登録
+                        dict[chars] = 1;
+                    }
                 }
 
-            } while (true);
-        }        
+            }
+            foreach (var item in dict)
+            {
+                Console.WriteLine($"{item.Key}：{item.Value}");
+            }
+        }
+        #endregion
     }
 }
