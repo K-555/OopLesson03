@@ -17,26 +17,30 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="28*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="80*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="0" VerticalAlignment="Center"
-                   Text="件名:"/>
-        <TextBlock Grid.Row="1" VerticalAlignment="Center"
-                   Text="To:"/>
-        <TextBlock Grid.Row="2" VerticalAlignment="Center"
-                   Text="Cc:"/>
-        <TextBlock Grid.Row="3" VerticalAlignment="Center"
-                   Text="Bcc:"/>
-        <TextBlock Grid.Row="4" VerticalAlignment="Center"
-                   Text="本文:"/>
-        <TextBox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" FontSize="20"/>
-        <TextBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" FontSize="20"/>
-        <TextBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" FontSize="20"/>
-        <TextBox Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" FontSize="20"/>
-        <TextBox Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" FontSize="20"/>
-        <StackPanel Grid.Row="6" Grid.ColumnSpan="2">
-            
+        <TextBlock Grid.Row="0" Text="件名:" VerticalAlignment="Center" 
+                   HorizontalAlignment="Right" FontSize="20" Margin="10"/>
+        <TextBlock Grid.Row="1" Text="To:" VerticalAlignment="Center" 
+                   HorizontalAlignment="Right" FontSize="20" Margin="10"/>
+        <TextBlock Grid.Row="2" Text="Cc:" VerticalAlignment="Center"
+                   HorizontalAlignment="Right" FontSize="20" Margin="10"/>
+        <TextBlock Grid.Row="3" Text="Bcc:" VerticalAlignment="Center"
+                   HorizontalAlignment="Right" FontSize="20" Margin="10"/>
+        <TextBlock Grid.Row="4" Text="本文:" VerticalAlignment="Center"
+                   HorizontalAlignment="Right" FontSize="20" Margin="10"/>
+        <TextBox x:Name="tbTitle" Grid.Column="1" Grid.Row="0" Margin="0,15,25,10" FontSize="20"/>
+        <TextBox x:Name="tbTo" Grid.Column="1" Grid.Row="1" Margin="0,15,25,10" FontSize="20"/>
+        <TextBox x:Name="tbCc" Grid.Column="1" Grid.Row="2" Margin="0,15,25,10" FontSize="20"/>
+        <TextBox x:Name="tbBcc" Grid.Column="1" Grid.Row="3" Margin="0,15,25,10" FontSize="20"/>
+        <TextBox x:Name="tbBody" Grid.Column="1" Grid.Row="4" Grid.RowSpan="2" 
+                 Margin="0,15,25,10" FontSize="20"/>
+        <StackPanel Grid.Row="6" Grid.ColumnSpan="2" 
+                    HorizontalAlignment="Right" VerticalAlignment="Center" 
+                    Orientation="Horizontal" Margin="0,0,10,0">
+            <Button x:Name="btCancel" Content="キャンセル" Width="100" Height="Auto" Margin="4" Click="btCancel_Click"/>
+            <Button x:Name="btSend" Content="送信" Width="100" Height="30" Margin="4" Click="btSend_Click"/>
         </StackPanel>
     </Grid>
 </Window>
