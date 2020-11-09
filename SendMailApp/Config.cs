@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace SendMailApp
 {
@@ -64,6 +67,24 @@ namespace SendMailApp
             this.Ssl = ssl;
 
             return true;
+        }
+
+        //シリアル化
+        public void Serialise()
+        {
+            //XmlWriter writer = XmlWriter.Create("Config.xml");
+            XmlSerializer xml = new XmlSerializer(typeof(Config));
+            StreamWriter sw = new StreamWriter("Config.xml");
+            Config cft = Config.GetInstance();
+            xml.Serialize(sw, cft);
+        }
+
+        //逆シリアル化
+        public void DeSerialise()
+        {
+            XmlSerializer xml = new XmlSerializer(typeof(Config));
+            StreamReader sr = new StreamReader("Config.xml");
+            xml.Deserialize(sr);
         }
     }
 }

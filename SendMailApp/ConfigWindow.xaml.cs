@@ -65,6 +65,7 @@ namespace SendMailApp
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Config ctf = Config.GetInstance();
+
             tbSmtp.Text = ctf.Smtp;
             tbPort.Text = ctf.Port.ToString();
             tbUserName.Text = ctf.MailAddress;
