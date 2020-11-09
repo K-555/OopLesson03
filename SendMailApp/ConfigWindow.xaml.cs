@@ -47,5 +47,29 @@ namespace SendMailApp
                 cbSsl.IsChecked ?? false);
             
         }
+
+        //OKボタン
+        private void btOk_Click(object sender, RoutedEventArgs e)
+        {
+            btApply_Click(sender,e);
+            this.Close();
+        }
+
+        //キャンセルボタン
+        private void btCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        //ロード時に一度だけ呼び出される
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Config ctf = Config.GetInstance();
+            tbSmtp.Text = ctf.Smtp;
+            tbPort.Text = ctf.Port.ToString();
+            tbUserName.Text = ctf.MailAddress;
+            tbPassWord.Password = ctf.PassWord;
+            cbSsl.IsChecked = ctf.Ssl;
+        }
     }
 }
