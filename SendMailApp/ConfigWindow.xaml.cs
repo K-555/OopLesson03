@@ -42,19 +42,6 @@ namespace SendMailApp
 
         private void btApply_Click(object sender, RoutedEventArgs e)
         {
-            Config.GetInstance().UpdateStatus(
-                tbSmtp.Text, 
-                tbUserName.Text,
-                tbPassWord.Password,
-                int.Parse(tbPort.Text),
-                cbSsl.IsChecked ?? false);
-                
-            
-        }
-
-        //OKボタン
-        private void btOk_Click(object sender, RoutedEventArgs e)
-        {
             if (tbSmtp.Text == "")
             {
                 MessageBox.Show("Smtpを入力してください");
@@ -78,6 +65,46 @@ namespace SendMailApp
             else if (cbSsl.IsChecked == false)
             {
                 MessageBox.Show("チェックをしてください");
+            }
+            else
+            {
+                Config.GetInstance().UpdateStatus(
+                    tbSmtp.Text,
+                    tbUserName.Text,
+                    tbPassWord.Password,
+                    int.Parse(tbPort.Text),
+                    cbSsl.IsChecked ?? false);
+                
+                this.Close();
+
+            }
+
+                
+            
+        }
+
+        //OKボタン
+        private void btOk_Click(object sender, RoutedEventArgs e)
+        {
+            if (tbSmtp.Text == "")
+            {
+                MessageBox.Show("Smtpを入力してください");
+            }
+            else if (tbUserName.Text == "")
+            {
+                MessageBox.Show("ユーザー名を入力してください");
+            }
+            else if (int.Parse(tbPort.Text) == 0)
+            {
+                MessageBox.Show("ポート番号を入力してください");
+            }
+            else if (tbPassWord.Password == "")
+            {
+                MessageBox.Show("パスワードを入力してください");
+            }
+            else if (tbSender.Text == "")
+            {
+                MessageBox.Show("送信元を入力してください");
             }
             else
             {
