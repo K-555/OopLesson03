@@ -73,35 +73,19 @@ namespace SendMailApp
         //シリアル化
         public void Serialise()
         {
-            try
-            {
-                XmlSerializer xs = new XmlSerializer(typeof(Config));
-                StreamWriter sw = new StreamWriter("Config.xml");
-                Config cf = Config.GetInstance();
-                xs.Serialize(sw, cf);
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
+            XmlSerializer xs = new XmlSerializer(typeof(Config));
+            StreamWriter sw = new StreamWriter("Config.xml");
+            Config cf = Config.GetInstance();
+            xs.Serialize(sw, cf);
         }
 
         //逆シリアル化
         public void DeSerialise()
         {
-            try
-            {
-                using (
-                    StreamReader sr = new StreamReader("Config.xml")){
-                    XmlSerializer xs = new XmlSerializer(typeof(Config));
-                    Instance = xs.Deserialize(sr) as Config;
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
+            using (
+                StreamReader sr = new StreamReader("Config.xml")){
+                XmlSerializer xs = new XmlSerializer(typeof(Config));
+                Instance = xs.Deserialize(sr) as Config;
             }
         }
     }
