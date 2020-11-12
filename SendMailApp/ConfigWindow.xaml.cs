@@ -34,7 +34,9 @@ namespace SendMailApp
             tbUserName.Text = cf.MailAddress;
             tbPassWord.Password = cf.PassWord;
             cbSsl.IsChecked = cf.Ssl;
-            
+            tbSender.Text = cf.MailAddress;
+
+
         }
 
         private void btApply_Click(object sender, RoutedEventArgs e)
@@ -45,14 +47,23 @@ namespace SendMailApp
                 tbPassWord.Password,
                 int.Parse(tbPort.Text),
                 cbSsl.IsChecked ?? false);
+                
             
         }
 
         //OKボタン
         private void btOk_Click(object sender, RoutedEventArgs e)
         {
-            btApply_Click(sender,e);
-            this.Close();
+            try
+            {
+                btApply_Click(sender, e);
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //キャンセルボタン
@@ -71,6 +82,7 @@ namespace SendMailApp
             tbUserName.Text = ctf.MailAddress;
             tbPassWord.Password = ctf.PassWord;
             cbSsl.IsChecked = ctf.Ssl;
+            tbSender.Text = ctf.MailAddress;
         }
     }
 }

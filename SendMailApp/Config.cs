@@ -58,13 +58,14 @@ namespace SendMailApp
         }
 
         //設定データ更新
-        public bool UpdateStatus(string smtp,string mailAddress,string passWord,int port,bool ssl)
+        public bool UpdateStatus(string smtp,string mailAddress,string passWord,int port,bool ssl )
         {
             this.Smtp = smtp;
             this.MailAddress = mailAddress;
             this.PassWord = passWord;
             this.Port = port;
             this.Ssl = ssl;
+            
 
             return true;
         }
@@ -72,19 +73,36 @@ namespace SendMailApp
         //シリアル化
         public void Serialise()
         {
-            //XmlWriter writer = XmlWriter.Create("Config.xml");
-            XmlSerializer xml = new XmlSerializer(typeof(Config));
-            StreamWriter sw = new StreamWriter("Config.xml");
-            Config cft = Config.GetInstance();
-            xml.Serialize(sw, cft);
+            try
+            {
+                XmlSerializer xs = new XmlSerializer(typeof(Config));
+                StreamWriter sw = new StreamWriter("Config.xml");
+                Config cf = Config.GetInstance();
+                xs.Serialize(sw, cf);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         //逆シリアル化
         public void DeSerialise()
         {
-            XmlSerializer xml = new XmlSerializer(typeof(Config));
-            StreamReader sr = new StreamReader("Config.xml");
-            xml.Deserialize(sr);
+            try
+            {
+                using (
+                    StreamReader sr = new StreamReader("Config.xml")){
+                    XmlSerializer xs = new XmlSerializer(typeof(Config));
+                    Instance = xs.Deserialize(sr) as Config;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }
