@@ -75,6 +75,10 @@ namespace SendMailApp
             {
                 MessageBox.Show("送信元を入力してください");
             }
+            else if (cbSsl.IsChecked == false)
+            {
+                MessageBox.Show("チェックをしてください");
+            }
             else
             {
                 btApply_Click(sender, e);
