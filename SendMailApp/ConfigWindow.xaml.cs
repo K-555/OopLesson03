@@ -97,15 +97,18 @@ namespace SendMailApp
             {
                 MessageBoxResult result = MessageBox.Show("変更が反映されていません", "警告",
                     MessageBoxButton.OKCancel, MessageBoxImage.Warning);
-                if (result == MessageBoxResult.OK){}
+                if (result == MessageBoxResult.OK)
+                {
+                    this.Close();
+                }
                 else if (result == MessageBoxResult.Cancel)
                 {
-                    btOk_Click(sender, e);
+                    
                 }
 
             }
 
-            this.Close();
+            
         }
 
         //ロード時に一度だけ呼び出される
