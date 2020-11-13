@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -125,16 +126,28 @@ namespace SendMailApp
             {
                 Config.GetInstance().Serialise();   //シリアル化　オブジェクト→XML
             }
-            catch (FileNotFoundException)
-            {
-                //btConfig_Click(sender, e);
-                ConfigWindowShow(); //ファイルが存在しないので設定画面を先に生成
-            }
             catch (Exception ex)
             {
 
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void tbAdd_Click(object sender, RoutedEventArgs e)
+        {
+            var fod = new OpenFileDialog();
+            fod.Multiselect = true;
+            if (fod.ShowDialog() == true)
+            {
+                lbfile.Items.Add(fod.FileName);
+                //lbfile.SelectedItems.Add(fod.FileNames);
+                //lbfile.SelectedItems.Add(fod.Multiselect);
+            }
+        }
+
+        private void tbDelete_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
