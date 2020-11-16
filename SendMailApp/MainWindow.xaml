@@ -46,7 +46,7 @@
         <Button x:Name="btConfig" Grid.Row="5" Margin="10" Content="設定" Click="btConfig_Click"/>
         <TextBlock Grid.Row="0" Grid.Column="2" Text="添付ファイル：" VerticalAlignment="Top" 
                    HorizontalAlignment="Right" FontSize="20" Margin="10"/>
-        <Button x:Name="tbAdd" Grid.Row="2" Grid.Column="2" Content="追加" FontSize="20" Margin="5" Click="tbAdd_Click"/>
+        <Button x:Name="tbAdd" Grid.Row="2" Grid.Column="2" Content="追加" FontSize="20" Margin="5" Click="tbAdd_Click" Background="#FF9789EE" Foreground="#FFF30B00" BorderBrush="Black"/>
         <Button x:Name="tbDelete" Grid.Row="3" Grid.Column="2" Content="削除" FontSize="20" Margin="5"
                 Click="tbDelete_Click"/>
         <ListBox x:Name="lbfile" Grid.Row="0" Grid.Column="3" FontSize="20"

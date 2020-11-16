@@ -62,7 +62,10 @@ namespace SendMailApp
                 }
                 msg.Subject = tbTitle.Text; //件名
                 msg.Body = tbBody.Text; //本文
-
+                foreach (var send in lbfile.Items)
+                {
+                    msg.Attachments.Add(new Attachment(send.ToString()));
+                }
                 
                 sc.Host = ctf.Smtp; //SMTPサーバの設定
                 sc.Port = ctf.Port;
@@ -139,15 +142,26 @@ namespace SendMailApp
             fod.Multiselect = true;
             if (fod.ShowDialog() == true)
             {
-                lbfile.Items.Add(fod.FileName);
-                //lbfile.SelectedItems.Add(fod.FileNames);
-                //lbfile.SelectedItems.Add(fod.Multiselect);
+                foreach (var file in fod.FileNames)
+                {
+                    lbfile.Items.Add(file);
+                }
+                                
             }
         }
 
         private void tbDelete_Click(object sender, RoutedEventArgs e)
         {
+            
+            if (lbfile.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("選択してください。");
 
+            }
+            else
+            {
+                lbfile.Items.RemoveAt(lbfile.SelectedIndex);
+            }
         }
     }
 }
