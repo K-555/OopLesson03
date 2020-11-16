@@ -71,9 +71,25 @@ namespace SendMailApp
                 sc.Port = ctf.Port;
                 sc.EnableSsl = ctf.Ssl;
                 sc.Credentials = new NetworkCredential(ctf.MailAddress , ctf.PassWord);
+                if (tbBody.Text == ""||lbfile.Items == null|| tbTitle.Text == "")
+                {
+                    MessageBoxResult result = MessageBox.Show("空白ですが大丈夫ですか？", "注意",
+                    MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+                    if (result == MessageBoxResult.OK)
+                    {
+                        sc.SendMailAsync(msg);
+                    }
+                    else if (result == MessageBoxResult.Cancel)
+                    {
+                        
+                    }
+                }
+                else
+                {
+                    //sc.Send(msg);   //送信
+                    sc.SendMailAsync(msg);
 
-                //sc.Send(msg);   //送信
-                sc.SendMailAsync(msg);
+                }
 
             }
             catch (Exception ex)
